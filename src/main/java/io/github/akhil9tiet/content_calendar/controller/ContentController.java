@@ -2,6 +2,7 @@ package io.github.akhil9tiet.content_calendar.controller;
 
 import io.github.akhil9tiet.content_calendar.model.Content;
 import io.github.akhil9tiet.content_calendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +35,13 @@ public class ContentController {
     }
 
     @PostMapping("")
-    public void create(@RequestBody Content content){
+    public void create(@Valid @RequestBody Content content){
         contentCollectionRepository.save(content);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@RequestBody Content content, Integer id){
+    public void update(@Valid @RequestBody Content content, Integer id){
         if(!contentCollectionRepository.existsById(id)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content Not Found");
         }

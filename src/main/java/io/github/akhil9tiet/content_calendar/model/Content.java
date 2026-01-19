@@ -1,10 +1,12 @@
 package io.github.akhil9tiet.content_calendar.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDateTime;
 
 public record Content(
-    Integer id,
-    String title,
+    @NotBlank Integer id,
+    @NotBlank String title,
     String desc,
     Status status,
     Type contentType,
