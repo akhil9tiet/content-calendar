@@ -2,6 +2,7 @@ package io.github.akhil9tiet.content_calendar.controller;
 
 import io.github.akhil9tiet.content_calendar.model.Content;
 import io.github.akhil9tiet.content_calendar.repository.ContentJdbcTemplateRepository;
+import io.github.akhil9tiet.content_calendar.repository.ContentRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ public class ContentController {
 
     //Dependency injections and API endpoints will be added here in the future.
 //    private final ContentCollectionRepository repository;
-      private final ContentJdbcTemplateRepository repository;
+      private final ContentRepository repository;
 
 //    public ContentController(ContentCollectionRepository contentCollectionRepository) {
 //        this.repository = contentCollectionRepository;
 //    }
 
-    public ContentController(ContentJdbcTemplateRepository repository) {
+    public ContentController(ContentRepository repository) {
         this.repository = repository;
     }
 
@@ -60,7 +61,7 @@ public class ContentController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content Not Found");
         }
         repository.findById(id).ifPresent(content -> {
-            repository.delete(id);
+            repository.deleteById(id);
         });
     }
 

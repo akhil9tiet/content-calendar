@@ -1,11 +1,13 @@
 package io.github.akhil9tiet.content_calendar.model;
 
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
+
 public record Content(
-    @NotBlank Integer id,
+    @Id Integer id,
     @NotBlank String title,
     String desc,
     Status status,
